@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >WAYS COMPANY</title>
-    
+    <title>WAYS COMPANY</title>
+
 
 
 </head>
@@ -19,14 +19,38 @@
         <a style="margin-left: 800px; color :black " href=""> About company</a>
         <a style="margin-left:75px; color: black;" href="./accounting.html">Accounting department</a>
         <a style="color: black ; margin-left: 75px;" href="./index,.html"> Home page </a>
+
     </header>
 
+    <main  style="background-color: peru;">
+        <form id="form">
+            <label for="fname">Full name:</label><br>
+            <input type="text" id="fname" name="fname"></input><br>
+            <label for="Department">Department:</label><br>
+            <select name="Department" id="Department">
+                <option value="Administration">Administration</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Development">Development</option>
+                <option value="Finance">Finance</option>
 
-    <main>
+
+            </select><br>
+
+            <label for="Level ">Level :</label><br>
+            <select name="Level" id="Level">
+                <option value="Junior">Junior</option>
+                <option value="Mid-Senior">Mid-Senior</option>
+                <option value="Senior">Senior</option>
+            </select><br>
+
+            <label for="imageUrl">Image url:</label><br>
+            <input type="text" id="imageUrl" name="imageUrl"></input><br>
+            <input type="submit" value="Add an employee"> </input>
+        </form>
         <script src="./app.js"></script>
     </main>
 
-
+    
 
     <footer style="background-color: brown;">
         <p style="text-align: center;"> &copy; 2022</p>
@@ -34,6 +58,8 @@
         <a style="color: blue;" href="">Facebook</a>
         <a style="color: whitesmoke;  margin-left: 75px;" href=""> inastgram</a>
     </footer>
+
+    
 </body>
 
 </html>
