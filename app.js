@@ -2,7 +2,7 @@
 
 let allEmployee = [];
 let form = document.getElementById("form");
-let imagess=document.getElementById("main");
+let imagess = document.getElementById("main");
 
 
 function Employee(employeeId, fullName, department, level, image) {
@@ -22,17 +22,28 @@ function randomIdnum() {
 }
 
 
-function saveToLocalstorage (){
+function saveToLocalstorage() {
     let stringifedData = JSON.stringify(allEmployee);
     localStorage.setItem("Employees", stringifedData)
 }
 
 
+
+
+
 function getData() {
     let data = localStorage.getItem("Employees");
     let parseData = JSON.parse(data);
-    console.log(parseData);
-    console.log(typeof parseData);
+    
+    // allEmployee = parseData;
+    if(parseData !=null){
+    for (let i = 0; i < parseData.length; i++) {
+        console.log(parseData[i]);
+        new Employee(parseData[i].employeeIdNumber, parseData[i].employeeNam, parseData[i].departmentName, parseData[i].whichLevel, parseData[i].imageUrl)
+    }
+    }
+
+
 }
 
 
@@ -64,25 +75,35 @@ Employee.prototype.emoloyeeInfo = function () {
     document.write(`<p> The level of employee is ${this.whichLevel} </p>`);
     document.write("The  net salary is :")
     document.write(`<p> ${this.salary() - this.salary() * 0.075}</p>`);
-    
+
     let imago = document.createElement("img");
-    imago.setAttribute("src", this.image);
+    imago.setAttribute("src", this.imageUrl);
     imagess.appendChild(imago);
-   
+
 }
+
+
+
+
+
+
+
+
 
 
 form.addEventListener("submit", addemloyee)
 
 function addemloyee(event) {
     event.preventDefault();
-    let fullName=event.target.fname.value;
-    let department=event.target.Department.value;
-    let level=event.target.Level.value;
-    let image=event.target.imageUrl.value;
+    let fullName = event.target.fname.value;
+    let department = event.target.Department.value;
+    let level = event.target.Level.value;
+    let image = event.target.imageUrl.value;
 
-    let newEmployee = new Employee(randomIdnum() , fullName , department, level, image);
+    let newEmployee = new Employee(randomIdnum(), fullName, department, level, image);
     newEmployee.emoloyeeInfo();
+   
+    
     saveToLocalstorage();
 }
 
@@ -99,84 +120,18 @@ let employeeHadi = new Employee("1006", "Hadi Ahmad", "Finance", "Mid-Senior", "
 
 
 
-for (let i = 0; i < allEmployee.length; i++){
+for (let i = 0; i < allEmployee.length; i++) {
     allEmployee[i].emoloyeeInfo();
+    
 }
 
 
 
 
+
+
+
 getData();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// localStorage.setItem("employeeId", "1000");
-// localStorage.setItem("fullName" ,"Ghazi Samer");
-// localStorage.setItem("department" ,"Administration");
-// localStorage.setItem("level " ,"Senior");
-// localStorage.setItem("employeeId", "1001");
-// localStorage.setItem("fullName" ,"Lana Ali");
-// localStorage.setItem("department" ,"Finance");
-// localStorage.setItem("level " ,"Senior");
-// localStorage.setItem("employeeId", "1002");
-// localStorage.setItem("fullName" ,"Tamara Ayoub");
-// localStorage.setItem("department" ,"Marketing");
-// localStorage.setItem("level " ,"Senior");
-// localStorage.setItem("employeeId", "1003");
-// localStorage.setItem("fullName" ,"Safi Walid");
-// localStorage.setItem("department" ,"Administration");
-// localStorage.setItem("level " ,"Mid-Senior");
-// localStorage.setItem("employeeId", "1004");
-// localStorage.setItem("fullName" ,"Omar Zaid");
-// localStorage.setItem("department" ,"Development");
-// localStorage.setItem("level " ,"Senior");
-// localStorage.setItem("employeeId", "1005");
-// localStorage.setItem("fullName" ,"Rana Saleh");
-// localStorage.setItem("department" ,"Development");
-// localStorage.setItem("level " ,"Junior");
-// localStorage.setItem("employeeId", "1006");
-// localStorage.setItem("fullName" ,"Hadi Ahmad");
-// localStorage.setItem("department" ,"Finance");
-// localStorage.setItem("level " ,"Mid-Senior");
-
-
 
 
 
