@@ -70,9 +70,11 @@ Employee.prototype.salary = function () {
 
 
 Employee.prototype.emoloyeeInfo = function () {
+
     let imago = document.createElement("img");
     imago.setAttribute("src", this.imageUrl);
     imagess.appendChild(imago);
+
 
     let par = document.createElement('p');
     par.textContent = (` - The employee Name is ${this.employeeNam}`);
@@ -99,6 +101,7 @@ Employee.prototype.emoloyeeInfo = function () {
     // document.write(`<p> The level of employee is ${this.whichLevel} </p>`);
     // document.write("The  net salary is :")
     // document.write(`<p> ${this.salary() - this.salary() * 0.075}</p>`);
+
 
 
 
@@ -154,6 +157,10 @@ for (let i = 0; i < allEmployee.length; i++) {
 
 
 getData();
+
+
+
+
 
 
 
