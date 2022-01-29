@@ -2,6 +2,7 @@
 
 let allEmployee = [];
 let form = document.getElementById("form");
+let imagess = document.getElementById("main");
 
 
 function Employee(employeeId, fullName, department, level, image) {
@@ -19,6 +20,34 @@ function Employee(employeeId, fullName, department, level, image) {
 function randomIdnum() {
     return Math.floor(Math.random() * 10000);
 }
+
+
+function saveToLocalstorage() {
+    let stringifedData = JSON.stringify(allEmployee);
+    localStorage.setItem("Employees", stringifedData)
+}
+
+
+
+
+
+function getData() {
+    let data = localStorage.getItem("Employees");
+    let parseData = JSON.parse(data);
+    
+    // allEmployee = parseData;
+    if(parseData !=null){
+    for (let i = 0; i < parseData.length; i++) {
+        console.log(parseData[i]);
+        new Employee(parseData[i].employeeIdNumber, parseData[i].employeeNam, parseData[i].departmentName, parseData[i].whichLevel, parseData[i].imageUrl)
+    }
+    }
+
+
+}
+
+
+
 
 Employee.prototype.salary = function () {
     var level = this.whichLevel;
@@ -41,26 +70,63 @@ Employee.prototype.salary = function () {
 
 
 Employee.prototype.emoloyeeInfo = function () {
-    document.write(`<p> - The employee Name is ${this.employeeNam}</p>`);
-    document.write(`<p> He is in  ${this.departmentName} department</p>`);
-    document.write(`<p> The level of employee is ${this.whichLevel} </p>`);
-    document.write("The  net salary is :")
-    document.write(`<p> ${this.salary() - this.salary() * 0.075}</p>`);
-   
+    let imago = document.createElement("img");
+    imago.setAttribute("src", this.imageUrl);
+    imagess.appendChild(imago);
+
+    let par = document.createElement('p');
+    par.textContent = (` - The employee Name is ${this.employeeNam}`);
+    imagess.appendChild(par);
+
+
+    let part = document.createElement('p');
+    part.textContent = (`  He/She is in  ${this.departmentName} department`);
+    imagess.appendChild(part);
+
+
+    let parth = document.createElement('p');
+    parth.textContent = (`  The level of employee is ${this.whichLevel}`);
+    imagess.appendChild(parth);
+
+    let parf = document.createElement('p');
+    parf.textContent = (` The  net salary is :${this.salary() - this.salary() * 0.075}`);
+    imagess.appendChild(parf);
+
+
+
+    // document.write(`<p> - The employee Name is ${this.employeeNam}</p>`);
+    // document.write(`<p> He is in  ${this.departmentName} department</p>`);
+    // document.write(`<p> The level of employee is ${this.whichLevel} </p>`);
+    // document.write("The  net salary is :")
+    // document.write(`<p> ${this.salary() - this.salary() * 0.075}</p>`);
+
+
+
 }
+
+
+
+
+
+
+
+
 
 
 form.addEventListener("submit", addemloyee)
 
 function addemloyee(event) {
     event.preventDefault();
-    let fullName=event.target.fname.value;
-    let department=event.target.Department.value;
-    let level=event.target.Level.value;
-    let image=event.target.imageUrl.value;
+    let fullName = event.target.fname.value;
+    let department = event.target.Department.value;
+    let level = event.target.Level.value;
+    let image = event.target.imageUrl.value;
 
-    let newEmployee = new Employee("00000" , fullName , department, level, image);
+    let newEmployee = new Employee(randomIdnum(), fullName, department, level, image);
     newEmployee.emoloyeeInfo();
+   
+    
+    saveToLocalstorage();
 }
 
 
@@ -76,6 +142,18 @@ let employeeHadi = new Employee("1006", "Hadi Ahmad", "Finance", "Mid-Senior", "
 
 
 
-for (let i = 0; i < allEmployee.length; i++){
+for (let i = 0; i < allEmployee.length; i++) {
     allEmployee[i].emoloyeeInfo();
+    
 }
+
+
+
+
+
+
+
+getData();
+
+
+
