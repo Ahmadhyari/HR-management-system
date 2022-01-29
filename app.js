@@ -70,15 +70,40 @@ Employee.prototype.salary = function () {
 
 
 Employee.prototype.emoloyeeInfo = function () {
-    document.write(`<p> - The employee Name is ${this.employeeNam}</p>`);
-    document.write(`<p> He is in  ${this.departmentName} department</p>`);
-    document.write(`<p> The level of employee is ${this.whichLevel} </p>`);
-    document.write("The  net salary is :")
-    document.write(`<p> ${this.salary() - this.salary() * 0.075}</p>`);
 
     let imago = document.createElement("img");
     imago.setAttribute("src", this.imageUrl);
     imagess.appendChild(imago);
+
+
+    let par = document.createElement('p');
+    par.textContent = (` - The employee Name is ${this.employeeNam}`);
+    imagess.appendChild(par);
+
+
+    let part = document.createElement('p');
+    part.textContent = (`  He/She is in  ${this.departmentName} department`);
+    imagess.appendChild(part);
+
+
+    let parth = document.createElement('p');
+    parth.textContent = (`  The level of employee is ${this.whichLevel}`);
+    imagess.appendChild(parth);
+
+    let parf = document.createElement('p');
+    parf.textContent = (` The  net salary is :${this.salary() - this.salary() * 0.075}`);
+    imagess.appendChild(parf);
+
+
+
+    // document.write(`<p> - The employee Name is ${this.employeeNam}</p>`);
+    // document.write(`<p> He is in  ${this.departmentName} department</p>`);
+    // document.write(`<p> The level of employee is ${this.whichLevel} </p>`);
+    // document.write("The  net salary is :")
+    // document.write(`<p> ${this.salary() - this.salary() * 0.075}</p>`);
+
+
+
 
 }
 
@@ -132,6 +157,9 @@ for (let i = 0; i < allEmployee.length; i++) {
 
 
 getData();
+
+
+
 
 
 
